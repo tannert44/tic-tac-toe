@@ -1,10 +1,24 @@
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
 #main-wrapper {
   display:flex;
   flex-flow: row wrap;
   max-height: 400px;
   max-width: 400px;
-  justify-content: flex-start
+  justify-content: flex-start;
+  margin: 100px auto;
 }
+
+#main-wrapper > div{
+  background-color: white; 
+}
+
 #one {
   height: 100px;
   width:  100px;

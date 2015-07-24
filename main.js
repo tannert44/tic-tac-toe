@@ -43,52 +43,14 @@ function reset() {
   turn = 0;
 };
 
-function checkForWin(){
+function checkRowsAndColumns(Roc){
   var limeWins = false;
   var aquaWins = false;
-  if(scoreObj.row1===3){
-  	limeWins=true;
-  } else if(scoreObj.row1===-3){
+  if(Roc === 3){
+    limeWins = true;
+  }else if(Roc===-3){
   	aquaWins=true;
   }
-  if(scoreObj.row2===3){
-    limeWins=true;
-  } else if(scoreObj.row2===-3){
-  	aquaWins=true;
-  }
-  if(scoreObj.row3===3){
-    limeWins=true;
-  } else if(scoreObj.row3===-3){
-  	aquaWins=true;
-  }
-
-  if(scoreObj.column1===3){
-  	limeWins=true;
-  } else if(scoreObj.column1===-3){
-  	aquaWins=true;
-  }
-  if(scoreObj.column2===3){
-  	limeWins=true;
-  } else if(scoreObj.column2===-3){
-  	aquaWins=true;
-  }
-  if(scoreObj.column3===3){
-  	limeWins=true;
-  } else if(scoreObj.column3===-3){
-  	aquaWins=true;
-  }
-
-  if(scoreObj.drow1===3){
-  	limeWins=true;
-  } else if(scoreObj.drow1===-3){
-  	aquaWins=true;
-  }
-  if(scoreObj.drow2===3){
-  	limeWins=true;
-  } else if(scoreObj.drow2===-3){
-  	aquaWins=true;
-  }
-
   if(limeWins){
   	alert("Limes Rules The World!");
   	reset();
@@ -97,142 +59,55 @@ function checkForWin(){
   	alert("Sky Pixies Rule The World!");
   	reset();
   }
+  if(turn === 9 && limeWins === false && aquaWins === false){
+    alert("Sky Pixies and Limes have slaughtered each other! Play Again!");
+    reset();
+  }
+}
+
+function checkForWin(){
+  checkRowsAndColumns(scoreObj.row1);
+  checkRowsAndColumns(scoreObj.row2);
+  checkRowsAndColumns(scoreObj.row3);
+  checkRowsAndColumns(scoreObj.column1);
+  checkRowsAndColumns(scoreObj.column2);
+  checkRowsAndColumns(scoreObj.coulmn4);
+  checkRowsAndColumns(scoreObj.drow1);
+  checkRowsAndColumns(scoreObj.drow2);
 };
 
-$oneBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($oneBox);
-    scoreObj.row1++;
-    scoreObj.column1++;
-    scoreObj.drow1++;
-  }else{
-    turnAqua($oneBox);
-    scoreObj.row1--;
-    scoreObj.column1--;
-    scoreObj.drow1--;
-  }
+function changeBox(numBox, row, column, drow, rowD) {
+  numBox.on("click", function(){
+  var $backgroundColorValue = numBox.css("background-color");
+  if($backgroundColorValue === "rgb(255, 255, 255)"){
+    if(turn % 2 === 0){
+      turnLime(numBox);
+      scoreObj[row]++;
+      scoreObj[column]++;
+      scoreObj[drow]++;
+      scoreObj[rowD]++;
+    }else{
+      turnAqua(numBox);
+      scoreObj[row]--;
+      scoreObj[column]--;
+      scoreObj[drow]--;
+      scoreObj[rowD]--;
+    }
   turn++;
   checkForWin();
-});
+  }else{
+    alert("Thats already been clicked you asshole!! Choose another square!");   
+  }});
+}
 
-$twoBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($twoBox);
-    scoreObj.row1++;
-    scoreObj.column2++;
-  }else{
-    turnAqua($twoBox);
-    scoreObj.row1--;
-    scoreObj.column2--;
-  }
-  turn++;
-  checkForWin();
-});
+ 
 
-$threeBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($threeBox);
-    scoreObj.row1++;
-    scoreObj.column3++;
-    scoreObj.drow2++;
-  }else{
-    turnAqua($threeBox);
-    scoreObj.row1--;
-    scoreObj.column3--;
-    scoreObj.drow2--;
-  }
-  turn++;
-  checkForWin();
-});
-
-$fourBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($fourBox);
-    scoreObj.row2++;
-    scoreObj.column1++;
-  }else{
-    turnAqua($fourBox);
-    scoreObj.row2--;
-    scoreObj.column1--;
-  }
-  turn++;
-  checkForWin();
-});
-
-$fiveBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($fiveBox);
-    scoreObj.row2++;
-    scoreObj.column2++;
-    scoreObj.drow1++;
-    scoreObj.drow2++;
-  }else{
-    turnAqua($fiveBox);
-    scoreObj.row2++;
-    scoreObj.column2--;
-    scoreObj.drow1--;
-    scoreObj.drow2--;
-  }
-  turn++;
-  checkForWin();
-});
-
-$sixBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($sixBox);
-    scoreObj.row2++;
-    scoreObj.column3++;
-  }else{
-    turnAqua($sixBox);
-    scoreObj.row2--;
-    scoreObj.column3--;
-  }
-  turn++;
-  checkForWin();
-});
-
-$sevenBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($sevenBox);
-    scoreObj.row3++;
-    scoreObj.column1++;
-    scoreObj.drow2++;
-  }else{
-    turnAqua($sevenBox);
-    scoreObj.row3--;
-    scoreObj.column1--;
-    scoreObj.drow2--;
-  }
-  turn++;
-  checkForWin();
-});
-
-$eightBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($eightBox);
-    scoreObj.row3++;
-    scoreObj.column2++;
-  }else{
-    turnAqua($eightBox);
-    scoreObj.row3--;
-    scoreObj.column2--;
-  }
-  turn++;
-  checkForWin();
-});
-
-$nineBox.on("click", function(){
-  if(turn % 2 === 0){
-    turnLime($nineBox);
-    scoreObj.row3++;
-    scoreObj.column3++;
-    scoreObj.drow1++;
-  }else{
-    turnAqua($nineBox);
-    scoreObj.row3--;
-    scoreObj.column3--;
-    scoreObj.drow1--;
-  }
-  turn++;
-  checkForWin();
-});
+changeBox($oneBox, "row1", "column1", "drow1");
+changeBox($twoBox, "row1", "column2");
+changeBox($threeBox, "row1", "column3", "drow2");
+changeBox($fourBox, "row2", "column1");
+changeBox($fiveBox, "row2", "column2", "drow1", "drow2");
+changeBox($sixBox, "row2", "column3");
+changeBox($sevenBox, "row3", "column1", "drow2");
+changeBox($eightBox, "row3", "column2");
+changeBox($nineBox, "row3", "column3", "drow1");
