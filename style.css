@@ -1,0 +1,70 @@
+#main-wrapper {
+  display:flex;
+  flex-flow: row wrap;
+  max-height: 400px;
+  max-width: 400px;
+  justify-content: flex-start
+}
+#one {
+  height: 100px;
+  width:  100px;
+  border-right: solid black;
+  border-bottom: solid black;
+}
+
+#two {
+  height: 100px;
+  width:  100px;
+  border-right: solid black;
+  border-left: solid black;
+  border-bottom: solid black;
+}
+
+#three {
+  height: 100px;
+  width:  100px;
+  border-left: solid black;
+  border-bottom: solid black;
+}
+
+#four {
+  height: 100px;
+  width:  100px;
+  border-top: solid black;
+  border-right: solid black;
+  border-bottom: solid black;
+}
+
+#five {
+  height: 100px;
+  width:  100px;
+  border: solid black;
+}
+
+#six {
+  height: 100px;
+  width:  100px;
+  border-top: solid black;
+  border-left: solid black;
+  border-bottom: solid black;
+}
+
+#seven {
+  height: 100px;
+  width:  100px;
+  border-top: solid black;
+  border-right: solid black;
+}
+#eight {
+  height: 100px;
+  width:  100px;
+  border-top: solid black;
+  border-right: solid black;
+  border-left: solid black;
+  
+}#nine {
+  height: 100px;
+  width:  100px;
+  border-top: solid black;
+  border-left: solid black;
+}
