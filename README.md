@@ -4,5 +4,5 @@ File created for practice
 
 ##How to Use
 
-*Clone repository
-*Open local server
+* Clone repository
+* Open local server
